@@ -10,6 +10,6 @@ export interface Pizza{
 
 }
 export function GetAllPizzas() {
-    let res=fetch('http://localhost:6000/GetAllPizzas').then(res=>res.json())
+    let res=fetch('http://192.168.14.155:6000/GetAllPizzas').then(res=>res.json())
     console.log(res)
 }

@@ -1,3 +1,4 @@
+import { PizzaServiceService } from './../pizza-service.service';
 import { GetAllPizzas, Pizza } from './../pizza/pizza';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,8 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PizzaListFromApiComponent implements OnInit {
   pizzas?:Pizza[];
-  public getFunc(){GetAllPizzas()}
-  constructor() { }
+  public getFunc(){this.pizzaService.getAllPizzas()}
+  constructor(private pizzaService:PizzaServiceService) { }
 
   ngOnInit(): void {
   }

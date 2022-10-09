@@ -8,6 +8,7 @@ import { PizzaComponent } from './pizza/pizza.component';
 import { PizzaCreaterComponent } from './pizza-creater/pizza-creater.component';
 import { PizzaListFromApiComponent } from './pizza-list-from-api/pizza-list-from-api.component';
 import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
