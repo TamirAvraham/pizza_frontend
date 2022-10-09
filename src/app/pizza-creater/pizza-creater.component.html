@@ -1,0 +1,22 @@
+<div class="pizzaCard">
+    
+    
+    <label for="name">Pizza's name:  </label>
+    <input id="name" [(ngModel)]="pizza.name" placeholder="pizza name">
+    <br>
+    <label for="price">Price of pizza:  </label>
+    <input  id="price" [(ngModel)]="pizza.price" placeholder="pizza name">
+    <br>
+    <label for="size" >Pizza's size:  </label>
+    
+    <div class="sizeDropDown"> 
+        <select id="size_select" [(ngModel)]="pizza.size" >
+            <option value="0.5">small</option>
+            <option value="1">normal</option>
+            <option value="2">XL</option>
+            <option value="3">XXL</option>
+        </select>
+    </div>
+    <br>
+    <button (click)="tostr()">submit</button>
+</div>
