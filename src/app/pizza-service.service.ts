@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class PizzaServiceService {
   pizzas:Pizza[]=[];
-  url='http://192.168.14.155:6000/'
+  url='http://127.0.0.1:8080/'
   addPizza(pizza:Pizza){
     this.pizzas.push(pizza)
   }
