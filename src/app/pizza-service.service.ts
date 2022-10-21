@@ -31,7 +31,7 @@ export class PizzaServiceService {
     
   }
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' })
   };
   constructor(private http:HttpClient) { }
 }

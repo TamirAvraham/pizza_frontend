@@ -1,1 +1,16 @@
-<p>pizza-detail works!</p>
+
+<div id="pizzaCard" class="pizzaCard" *ngIf="pizza">
+    <img src={{pizza.pngPath}} alt="no photo">
+    <div class="container"> 
+    <h1 id="head"><b>{{pizza.name}}    {{pizza.price}}₪</b></h1>
+    <ul class="toppings">
+        <li *ngFor="let topping of pizza.toppings">
+            <span class="name">{{topping.name}}</span>
+            <span class="price">{{topping.price}}</span>
+        </li>
+    </ul>
+    <br>
+    <button>Buy {{pizza.name}}</button>
+    </div>
+
+</div>
