@@ -26,10 +26,6 @@ export class PizzaServiceService {
     ret.pipe(tap(ogaboga=>console.log("got this shit")));
     ret.pipe(tap(pizzas=>pizzas.forEach((v,k)=>console.log(`${k}:${v}`))));
     console.log("fuck my life they both sucked");
-    
-    
-     
-    
   }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' })
