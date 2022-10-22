@@ -7,9 +7,12 @@ export class Topping{
     public ToString(){
         return `${this.name}  ${this.price}₪`;
     }
+    
     constructor(name:string,price:number,loc:Location){
         this.name=name;
         this.price=price;
         this.location=loc;
     }
+    
+    
 }
