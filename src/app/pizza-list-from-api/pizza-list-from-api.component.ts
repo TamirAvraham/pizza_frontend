@@ -9,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PizzaListFromApiComponent implements OnInit {
   pizzas?:Pizza[];
-  public getFunc(){this.pizzaService.getAllPizzas()}
+  public getFunc(){
+    this.pizzaService.getAllPizzas();
+    this.pizzas=this.pizzaService.pizzas;
+  }
   constructor(private pizzaService:PizzaServiceService) { }
 
   ngOnInit(): void {
+    this.getFunc();
   }
 
 }

@@ -1,6 +1,6 @@
 <div class="getPizzas">
     <button (click)="getFunc()">get pizzas</button>
     <ul *ngFor="let pizza of pizzas">
-        <app-pizza-detail [pizza]="pizza"></app-pizza-detail>
+        <app-pizza [pizza]="pizza"></app-pizza>
     </ul>
 </div>
