@@ -3,7 +3,10 @@
     <img src={{pizza.pngPath}} alt="no photo">
     <div class="container"> 
         <h1 id="head"><b>{{pizza.name}}    {{pizza.price}}₪</b></h1>
-        <button></button>
+        <nav>
+            <a routerLink></a>
+            <a routerLink></a>
+        </nav>
         <ul class="toppings">
             <li *ngFor="let topping of pizza.toppings">
                 <span class="name">{{topping.name}}</span>

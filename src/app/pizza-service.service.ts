@@ -26,6 +26,51 @@ export class PizzaServiceService {
     let ret=this.http.put<Object>(`${this.url}UpdatePizza/${NewPizza.id}`,JSON.stringify(NewPizza),this.httpOptions);
     ret.subscribe(res=>console.log(res));
   }
+  getPizza(id:string){
+    return this.pizzas.find(p=>p.id===id)!;
+  }
+  getPizzaFromServer(id:string){
+    let ret=this.http.get<Object>(`${this.url}GetPizza/${id}`,this.httpOptions);
+    let retVal:Pizza={
+      name:"null",
+      price:-1,
+      size:0.25,
+      toppings:[]
+    };
+    ret.subscribe(responce=>{
+      
+        type ObjectKey = keyof typeof responce;
+        
+        console.log(responce['data' as ObjectKey]);
+        let arr=responce['data' as ObjectKey];
+        
+        let data=arr['data' as ObjectKey] as unknown as Array<any>;
+        
+
+        
+        for (const pizza of data) {
+          let toppings:Topping[]=[];
+          for (const top of pizza['toppings']) {
+            toppings.push(this.ToppingFromObj(top))
+          }
+          let piz:Pizza={
+              id:pizza['id'],
+              price:pizza['price'],
+              name:pizza['name'],
+              pngPath: pizza['png_path']!='none'?pizza['png_path']:null,
+              size:pizza['size'],
+              toppings:toppings
+            }
+          retVal=piz;
+          
+          
+          
+          console.log(pizza['name' as ObjectKey]);
+        }
+    });
+    
+    return retVal;
+  }
   getAllPizzas(){
     let ret=this.http.get<Map<string,any>>(`${this.url}GetAllPizzas`,this.httpOptions);
     

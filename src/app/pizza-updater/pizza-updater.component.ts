@@ -1,9 +1,10 @@
-import { Location } from './../pizza/toping';
+
 import { PizzaServiceService } from './../pizza-service.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Pizza, Size } from '../pizza/pizza';
-
+import { Location } from '@angular/common';
 import { Topping } from '../pizza/toping';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pizza-updater',
@@ -21,7 +22,7 @@ export class PizzaUpdaterComponent implements OnInit {
     price:5.5,
     name:"pizza peperoni",
     size:Size.normal,
-    toppings:[new Topping("peperoni",3.5,Location.Half), new Topping("olives",3.5,Location.Half)]
+    toppings:[new Topping("peperoni",3.5,0.5), new Topping("olives",3.5,0.5)]
     
 
   };
@@ -36,9 +37,19 @@ export class PizzaUpdaterComponent implements OnInit {
     this.pizzaService.updatePizza(this.pizza!,this.NewPizza);
 
   }
-  constructor(private pizzaService:PizzaServiceService) { }
+  
+  GetPizza(){
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.pizza=this.pizzaService.getPizza(id);
+
+  }
+  goBack(){
+    this.Loc.back();
+  }
+  constructor(private pizzaService:PizzaServiceService,private route:ActivatedRoute,private Loc:Location) { }
 
   ngOnInit(): void {
+    this.GetPizza();
   }
 
 }
