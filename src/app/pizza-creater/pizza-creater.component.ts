@@ -14,14 +14,13 @@ export class PizzaCreaterComponent implements OnInit {
     console.log("Pizza name:%s,price:%f,Size:%d,toppings:%d",this.pizza.name,this.pizza.price,this.pizza.size,this.pizza.toppings)
   }
   pizza:Pizza={
-    price:0,
-    name:"null",
+    price:69.9,
+    name:"peperoni pizza",
     size:Size.normal,
     toppings:[],
     pngPath:"https://th.bing.com/th/id/OIP.CAcetvx4AqSwEsKHi-Yq5gHaEK?w=328&h=184&c=7&r=0&o=5&dpr=1.25&pid=1.7"
     
-
-  };
+  }
   constructor() { }
 
   ngOnInit(): void {

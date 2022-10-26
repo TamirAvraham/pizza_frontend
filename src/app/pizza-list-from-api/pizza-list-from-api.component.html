@@ -1,4 +1,5 @@
-<div class="getPizzas">
+<div class="ProductList">
+    
     <button (click)="getFunc()">get pizzas</button>
     <ul *ngFor="let pizza of pizzas">
         <app-pizza [pizza]="pizza"></app-pizza>

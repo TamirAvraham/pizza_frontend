@@ -9,6 +9,10 @@ import { PizzaCreaterComponent } from './pizza-creater/pizza-creater.component';
 import { PizzaListFromApiComponent } from './pizza-list-from-api/pizza-list-from-api.component';
 import { PizzaDetailComponent } from './pizza-detail/pizza-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HomepageComponent } from './homepage/homepage.component';
+import { EditPageComponent } from './edit-page/edit-page.component';
+import { PizzaUpdaterComponent } from './pizza-updater/pizza-updater.component';
+import { PizzaEditorListComponent } from './pizza-editor-list/pizza-editor-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     PizzaComponent,
     PizzaCreaterComponent,
     PizzaListFromApiComponent,
-    PizzaDetailComponent
+    PizzaDetailComponent,
+    HomepageComponent,
+    EditPageComponent,
+    PizzaUpdaterComponent,
+    PizzaEditorListComponent
   ],
   imports: [
     BrowserModule,

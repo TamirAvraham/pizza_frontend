@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pizza-list-from-api.component.css']
 })
 export class PizzaListFromApiComponent implements OnInit {
-  pizzas?:Pizza[];
+  pizzas?:Pizza[]=this.pizzaService.pizzas;
   public getFunc(){
     this.pizzaService.getAllPizzas();
     this.pizzas=this.pizzaService.pizzas;
@@ -16,6 +16,7 @@ export class PizzaListFromApiComponent implements OnInit {
   constructor(private pizzaService:PizzaServiceService) { }
 
   ngOnInit(): void {
+    this.pizzaService.getAllPizzas();
     this.getFunc();
   }
 

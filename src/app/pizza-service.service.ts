@@ -22,6 +22,10 @@ export class PizzaServiceService {
     });
     
   }
+  updatePizza(OldPizza:Pizza,NewPizza:Pizza){
+    let ret=this.http.put<Object>(`${this.url}UpdatePizza/${NewPizza.id}`,JSON.stringify(NewPizza),this.httpOptions);
+    ret.subscribe(res=>console.log(res));
+  }
   getAllPizzas(){
     let ret=this.http.get<Map<string,any>>(`${this.url}GetAllPizzas`,this.httpOptions);
     
@@ -37,19 +41,27 @@ export class PizzaServiceService {
         let data=arr['data' as ObjectKey] as unknown as Array<any>;
         
 
-        
+        let temp:Pizza[]=[];
         for (const pizza of data) {
           let toppings:Topping[]=[];
           for (const top of pizza['toppings']) {
             toppings.push(this.ToppingFromObj(top))
           }
-          this.addPizza({
-              price:pizza['price' as ObjectKey],
+          let piz:Pizza={
+              id:pizza['id'],
+              price:pizza['price'],
               name:pizza['name'],
+              pngPath: pizza['png_path']!='none'?pizza['png_path']:null,
               size:pizza['size'],
-              toppings:toppings})
+              toppings:toppings
+            }
+          temp.push(piz);
+          
+          
+          
           console.log(pizza['name' as ObjectKey]);
         }
+        this.pizzas=this.uniqByReduce<Pizza>(temp);
         console.log(this.pizzas)
         
       })
@@ -63,6 +75,14 @@ export class PizzaServiceService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' })
   };
+  private uniqByReduce<T>(array: T[]): T[] {
+    return array.reduce((acc: T[], cur: T) => {
+        if (!acc.includes(cur)) {
+            acc.push(cur);
+        }
+        return acc;
+    }, [])
+}
   private ToppingFromObj(obj:object){
     
     type ObjectKey = keyof typeof obj;
