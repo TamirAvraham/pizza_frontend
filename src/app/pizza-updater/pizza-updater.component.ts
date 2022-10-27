@@ -18,14 +18,7 @@ export class PizzaUpdaterComponent implements OnInit {
   public tostr(){
     console.log("Pizza name:%s,price:%f,Size:%d,toppings:%d",this.pizza!.name,this.pizza!.price,this.pizza!.size,this.pizza!.toppings);
   }
-  @Input() pizza?:Pizza={
-    price:5.5,
-    name:"pizza peperoni",
-    size:Size.normal,
-    toppings:[new Topping("peperoni",3.5,0.5), new Topping("olives",3.5,0.5)]
-    
-
-  };
+  @Input() pizza?:Pizza;
   NewPizza:Pizza={
    id:this.pizza?.id,
    name:"Base Name",
@@ -40,8 +33,11 @@ export class PizzaUpdaterComponent implements OnInit {
   
   GetPizza(){
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.pizza=this.pizzaService.getPizza(id);
-
+    console.log(id);
+    let Piz=this.pizzaService.getPizzaFromServer(id);
+    console.log(Piz);
+    this.pizza=Piz;
+    this.pizzaService.pizza;
   }
   goBack(){
     this.Loc.back();
@@ -49,7 +45,12 @@ export class PizzaUpdaterComponent implements OnInit {
   constructor(private pizzaService:PizzaServiceService,private route:ActivatedRoute,private Loc:Location) { }
 
   ngOnInit(): void {
+    
     this.GetPizza();
+    console.log(this.pizza);
+    this.GetPizza();
+    console.log(`this Pizza is ${this.pizza}`);
+    
   }
 
 }

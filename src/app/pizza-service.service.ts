@@ -9,6 +9,7 @@ import { Topping, Location } from './pizza/toping';
 })
 export class PizzaServiceService {
   pizzas:Pizza[]=[];
+  pizza?:Pizza;
   url='http://127.0.0.1:8080/'
   addPizza(pizza:Pizza){
     this.pizzas.push(pizza)
@@ -27,7 +28,15 @@ export class PizzaServiceService {
     ret.subscribe(res=>console.log(res));
   }
   getPizza(id:string){
-    return this.pizzas.find(p=>p.id===id)!;
+    for (const Pizza of this.pizzas) {
+      if (Pizza.id===id) {
+        return Pizza;
+      }
+      console.log(Pizza.id);
+      console.log(Pizza);
+      
+    }
+    return undefined;
   }
   getPizzaFromServer(id:string){
     let ret=this.http.get<Object>(`${this.url}GetPizza/${id}`,this.httpOptions);
@@ -44,29 +53,31 @@ export class PizzaServiceService {
         console.log(responce['data' as ObjectKey]);
         let arr=responce['data' as ObjectKey];
         
-        let data=arr['data' as ObjectKey] as unknown as Array<any>;
+        let data=arr['data' as ObjectKey];
+        console.log(data);
         
 
         
-        for (const pizza of data) {
+        
           let toppings:Topping[]=[];
-          for (const top of pizza['toppings']) {
+          for (const top of data['toppings' as ObjectKey] as unknown as Array<Object>) {
             toppings.push(this.ToppingFromObj(top))
           }
           let piz:Pizza={
-              id:pizza['id'],
-              price:pizza['price'],
-              name:pizza['name'],
-              pngPath: pizza['png_path']!='none'?pizza['png_path']:null,
-              size:pizza['size'],
+              id:data['id' as ObjectKey] as unknown as string,
+              price:data['price'as ObjectKey] as unknown as number,
+              name:data['name'as ObjectKey] as unknown as string,
+              pngPath: data['png_path'as ObjectKey] as unknown as string!='none'?data['png_path'as ObjectKey] as unknown as string:undefined,
+              size:data['size'as ObjectKey] as unknown as number,
               toppings:toppings
             }
-          retVal=piz;
+          console.log(piz);
+            
+          this.pizza=piz;
           
           
           
-          console.log(pizza['name' as ObjectKey]);
-        }
+         
     });
     
     return retVal;

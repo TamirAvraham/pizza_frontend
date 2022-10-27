@@ -4,8 +4,8 @@
     <div class="container"> 
         <h1 id="head"><b>{{pizza.name}}    {{pizza.price}}₪</b></h1>
         <nav>
-            <a routerLink></a>
-            <a routerLink></a>
+            <a routerLink="EditPizza\{{pizza.id}}">Edit</a>
+            
         </nav>
         <ul class="toppings">
             <li *ngFor="let topping of pizza.toppings">

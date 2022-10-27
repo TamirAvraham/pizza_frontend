@@ -16,6 +16,7 @@ export class PizzaEditorListComponent implements OnInit {
   constructor(private pizzaService:PizzaServiceService) { }
 
   ngOnInit(): void {
+    this.getPizzas();
   }
 
 }
