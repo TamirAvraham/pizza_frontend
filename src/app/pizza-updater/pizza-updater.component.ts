@@ -27,6 +27,8 @@ export class PizzaUpdaterComponent implements OnInit {
   }
   onclick(){
     console.log(`pizza id:${this.pizza?.id} NewPizza id:${this.NewPizza.id}`);
+    console.log("bla bla");
+    
     this.NewPizza=this.CompToPizza(this.NewPizza);
     console.log('new pizza is:');
     console.log(this.NewPizza);
