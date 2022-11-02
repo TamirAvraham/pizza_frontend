@@ -1,12 +1,9 @@
 
-<div id="pizzaCard" class="pizzaCard" *ngIf="pizza">
-    <img src={{pizza.pngPath}} alt="no photo">
+
+<div id="pizzaCard" class="pizzaCard" *ngIf="pizza && !edit;else onEdit">
     <div class="container"> 
+        <img src={{pizza.pngPath}} alt="no photo">
         <h1 id="head"><b>{{pizza.name}}    {{pizza.price}}₪</b></h1>
-        <nav>
-            <a routerLink="EditPizza\{{pizza.id}}">Edit</a>
-            
-        </nav>
         <ul class="toppings">
             <li *ngFor="let topping of pizza.toppings">
                 <span class="name">{{topping.name}}</span>
@@ -14,7 +11,15 @@
             </li>
         </ul>
         <br>
-        <button>Buy {{pizza.name}}</button>
+        <div class="navs">
+            <button (click)="Edit()">Edit</button><button>Delete</button>
+        </div>
+        
+        
     </div>
 
 </div>
+<ng-template #onEdit>
+    <app-pizza-updater [pizza]="pizza"></app-pizza-updater>
+    <button (click)="CloseEdit()">go back</button>
+</ng-template>

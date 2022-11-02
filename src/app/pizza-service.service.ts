@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, tap,of } from 'rxjs';
 import { Topping, Location } from './pizza/toping';
+import { CommonModule } from '@angular/common';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +29,9 @@ export class PizzaServiceService {
     ret.subscribe(res=>console.log(res));
   }
   getPizza(id:string){
+    this.getAllPizzas();
+    console.log(this.pizzas);
+    
     for (const Pizza of this.pizzas) {
       if (Pizza.id===id) {
         return Pizza;
@@ -38,49 +42,31 @@ export class PizzaServiceService {
     }
     return undefined;
   }
-  getPizzaFromServer(id:string){
+ getPizzaFromServer(id:string) {
     let ret=this.http.get<Object>(`${this.url}GetPizza/${id}`,this.httpOptions);
-    let retVal:Pizza={
-      name:"null",
-      price:-1,
-      size:0.25,
-      toppings:[]
-    };
-    ret.subscribe(responce=>{
+    ret.subscribe(responce => {
+      type ObjectKey = keyof typeof responce;
+      console.log(responce['data' as ObjectKey]);
+      let arr = responce['data' as ObjectKey];
+      let data = arr['data' as ObjectKey];
       
-        type ObjectKey = keyof typeof responce;
-        
-        console.log(responce['data' as ObjectKey]);
-        let arr=responce['data' as ObjectKey];
-        
-        let data=arr['data' as ObjectKey];
-        console.log(data);
-        
-
-        
-        
-          let toppings:Topping[]=[];
-          for (const top of data['toppings' as ObjectKey] as unknown as Array<Object>) {
-            toppings.push(this.ToppingFromObj(top))
-          }
-          let piz:Pizza={
-              id:data['id' as ObjectKey] as unknown as string,
-              price:data['price'as ObjectKey] as unknown as number,
-              name:data['name'as ObjectKey] as unknown as string,
-              pngPath: data['png_path'as ObjectKey] as unknown as string!='none'?data['png_path'as ObjectKey] as unknown as string:undefined,
-              size:data['size'as ObjectKey] as unknown as number,
-              toppings:toppings
-            }
-          console.log(piz);
-            
-          this.pizza=piz;
-          
-          
-          
-         
+      let toppings: Topping[] = [];
+      for (const top of data['toppings' as ObjectKey] as unknown as Array<Object>) {
+        toppings.push(this.ToppingFromObj(top));
+      }
+      let piz: Pizza = {
+        id: data['id' as ObjectKey] as unknown as string,
+        price: data['price' as ObjectKey] as unknown as number,
+        name: data['name' as ObjectKey] as unknown as string,
+        pngPath: data['png_path' as ObjectKey] as unknown as string != 'none' ? data['png_path' as ObjectKey] as unknown as string : undefined,
+        size: data['size' as ObjectKey] as unknown as number,
+        toppings: toppings
+      };
+      console.log('got to piz');
+      
+      this.pizza=piz;
     });
-    
-    return retVal;
+   return this.pizza;
   }
   getAllPizzas(){
     let ret=this.http.get<Map<string,any>>(`${this.url}GetAllPizzas`,this.httpOptions);
@@ -128,6 +114,7 @@ export class PizzaServiceService {
     
     
   }
+  
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' })
   };
@@ -157,5 +144,5 @@ export class PizzaServiceService {
       return of(result as T);
     };
   }
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,common:CommonModule) { }
 }
