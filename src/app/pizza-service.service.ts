@@ -24,8 +24,12 @@ export class PizzaServiceService {
     });
     
   }
-  updatePizza(OldPizza:Pizza,NewPizza:Pizza){
-    let ret=this.http.put<Object>(`${this.url}UpdatePizza/${NewPizza.id}`,JSON.stringify(NewPizza),this.httpOptions);
+  updatePizza(id:string,NewPizza:Pizza){
+    //console.log(NewPizza.id);
+    console.log(JSON.stringify(NewPizza));
+    console.log(NewPizza);
+    
+    let ret=this.http.put<Object>(`${this.url}UpdatePizza/${id}`,NewPizza,this.httpOptions);
     ret.subscribe(res=>console.log(res));
   }
   getPizza(id:string){
@@ -144,5 +148,6 @@ export class PizzaServiceService {
       return of(result as T);
     };
   }
+  
   constructor(private http:HttpClient,common:CommonModule) { }
 }
