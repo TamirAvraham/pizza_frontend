@@ -1,0 +1,19 @@
+<div class="ProductEditor" *ngIf="topping">
+    
+    <label for="name">Topping's name:  </label>
+    <input id="name" [(ngModel)]="topping.name" placeholder="{{topping.name}}">
+    <br>
+    <label for="price">Price of topping:  </label>
+    <input  id="price" [(ngModel)]="topping.price" placeholder="{{topping.price}}">
+    <br>
+    <label for="size" >Topping's size:  </label>
+    
+    <div class="sizeDropDown"> 
+        <select id="size_select" [(ngModel)]="topping.location" >
+            <option value="0.12">eight</option>
+            <option value="0.25">quoter</option>
+            <option value="0.5">half</option>
+            <option value="1">all</option>
+        </select>
+    </div>
+</div>

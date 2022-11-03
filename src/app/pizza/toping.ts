@@ -7,6 +7,13 @@ export class Topping{
     public ToString(){
         return `${this.name}  ${this.price}₪`;
     }
+    public static CreateNewToppingFromObj(ogj:object):Topping{
+        type key=keyof typeof ogj
+        let name=ogj['name' as key] as string;
+        let price=parseFloat(ogj['price' as key] as string);
+        let loc=parseFloat(ogj['location' as key] as string);
+        return new Topping(name,price,loc);
+    }
     
     constructor(name:string,price:number,loc:number){
         this.name=name;

@@ -13,6 +13,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { EditPageComponent } from './edit-page/edit-page.component';
 import { PizzaUpdaterComponent } from './pizza-updater/pizza-updater.component';
 import { PizzaEditorListComponent } from './pizza-editor-list/pizza-editor-list.component';
+import { ToppingEditorComponent } from './topping-editor/topping-editor.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PizzaEditorListComponent } from './pizza-editor-list/pizza-editor-list.
     HomepageComponent,
     EditPageComponent,
     PizzaUpdaterComponent,
-    PizzaEditorListComponent
+    PizzaEditorListComponent,
+    ToppingEditorComponent
   ],
   imports: [
     BrowserModule,

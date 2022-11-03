@@ -18,6 +18,9 @@
             <option value="3">XXL</option>
         </select>
     </div>
+    <ul *ngFor="let topping of pizza.toppings">
+        <app-topping-editor [topping]="topping"></app-topping-editor>
+    </ul>
     <br>
     <button (click)="onclick()">submit</button>
     <br><br><br>
