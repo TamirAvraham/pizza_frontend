@@ -6,7 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-page.component.css']
 })
 export class EditPageComponent implements OnInit {
-
+  add:boolean=false;
+  True(){
+    this.add=true;
+    console.log(this.add);
+    
+  }
+  False(){
+    this.add=false;
+    console.log(this.add);
+    
+  }
   constructor() { }
 
   ngOnInit(): void {

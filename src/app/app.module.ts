@@ -14,6 +14,7 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { PizzaUpdaterComponent } from './pizza-updater/pizza-updater.component';
 import { PizzaEditorListComponent } from './pizza-editor-list/pizza-editor-list.component';
 import { ToppingEditorComponent } from './topping-editor/topping-editor.component';
+import { ToppingCreatorComponent } from './topping-creator/topping-creator.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ToppingEditorComponent } from './topping-editor/topping-editor.componen
     EditPageComponent,
     PizzaUpdaterComponent,
     PizzaEditorListComponent,
-    ToppingEditorComponent
+    ToppingEditorComponent,
+    ToppingCreatorComponent
   ],
   imports: [
     BrowserModule,

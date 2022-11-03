@@ -14,7 +14,9 @@ export class Topping{
         let loc=parseFloat(ogj['location' as key] as string);
         return new Topping(name,price,loc);
     }
-    
+    public static baseTopping(){
+        return new Topping('base',-1,0.1);
+    }
     constructor(name:string,price:number,loc:number){
         this.name=name;
         this.price=price;

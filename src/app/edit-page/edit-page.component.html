@@ -1,1 +1,9 @@
 <app-pizza-editor-list></app-pizza-editor-list>
+<div class="addingPizza" *ngIf="!add;else newPizza">
+    <button (click)="True()">add new pizza</button>
+</div>
+<ng-template #newPizza>
+    <app-pizza-creater></app-pizza-creater>
+    <br><br><br>
+    <button (click)="False()">go back</button>
+</ng-template>

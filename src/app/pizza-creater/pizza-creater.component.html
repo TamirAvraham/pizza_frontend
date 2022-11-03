@@ -7,8 +7,7 @@
     <label for="price">Price of pizza:  </label>
     <input  id="price" [(ngModel)]="pizza.price" placeholder="enter pizza's price">
     <br>
-    <label for="size" >Pizza's size:  </label>
-    
+    <label for="sizeDropDown" >Pizza's size:  </label> 
     <div class="sizeDropDown"> 
         <select id="size_select" [(ngModel)]="pizza.size" >
             <option value="0.5">small</option>
@@ -17,6 +16,11 @@
             <option value="3">XXL</option>
         </select>
     </div>
-    <br>
-    <button (click)="tostr()">submit</button>
+    <ul *ngFor="let topping of pizza.toppings">
+        <app-topping-editor [topping]="topping"></app-topping-editor>
+    </ul>
+    <br><br>
+    <button (click)="newTopping()">add topping</button>
+    <br><br>
+    <button (click)="onSubmit()">submit</button>
 </div>

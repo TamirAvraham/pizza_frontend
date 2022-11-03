@@ -118,7 +118,14 @@ export class PizzaServiceService {
     
     
   }
-  
+  AddPizza(pizza:Pizza){
+    console.log(`got to posting ${this.url}NewPizza`);
+    let ret=this.http.post<Object>(`${this.url}NewPizza`,pizza,this.httpOptions);
+    console.log('posted');
+    
+    ret.pipe(tap(val=>console.log(val)));
+    
+  }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json','Access-Control-Allow-Credentials':'true' })
   };
